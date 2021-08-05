@@ -1,12 +1,14 @@
-import "./App.css";
 import { Cards, Chart, CountryPicker } from "./components";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
-function App() {
-  const [data, setdata] = useState({});
+import styles from "./App.module.css";
 
+function App() {
+  const [vals, setvals] = useState({});
+  const [dailyData, setdailyData] = useState({});
   useEffect(() => {
     fetchData();
+    fetchDailyData();
   }, []);
 
   async function fetchData() {
@@ -21,15 +23,24 @@ function App() {
         deaths,
         lastUpdate,
       };
-      setdata(modifiedData);
+      setvals(modifiedData);
     } catch (error) {}
   }
+
+  async function fetchDailyData() {
+    try {
+      const response = await fetch(`https://covid19.mathdro.id/api/daily`);
+      const [data] = await response.json();
+      setdailyData(data);
+    } catch (error) {}
+  }
+
   return (
     <div>
       <Header />
-      <div className="container">
-        <Cards data={data} />
-        <Chart />
+      <div className={styles.container}>
+        <Cards data={vals} />
+        <Chart data={dailyData} />
         <CountryPicker />
       </div>
     </div>
