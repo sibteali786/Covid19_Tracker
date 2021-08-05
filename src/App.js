@@ -3,22 +3,32 @@ import { Cards, Chart, CountryPicker } from "./components";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
 function App() {
+  const [data, setdata] = useState({});
+
   useEffect(() => {
     fetchData();
   }, []);
+
   async function fetchData() {
     try {
       const apiResponse = await fetch(`https://covid19.mathdro.id/api`);
 
-      const data = await apiResponse.json();
-      console.log(data);
+      const { confirmed, recovered, deaths, lastUpdate } =
+        await apiResponse.json();
+      const modifiedData = {
+        confirmed,
+        recovered,
+        deaths,
+        lastUpdate,
+      };
+      setdata(modifiedData);
     } catch (error) {}
   }
   return (
     <div>
       <Header />
       <div className="container">
-        <Cards />
+        <Cards data={data} />
         <Chart />
         <CountryPicker />
       </div>
