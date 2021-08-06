@@ -3,12 +3,25 @@ import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 
+export const fetchDailyData = async () => {
+  try {
+    const response = await fetch(`https://covid19.mathdro.id/api/daily`);
+    const resData = await response.json();
+    const modData = resData.map((dailyData) => ({
+      confirmed: dailyData.confirmed.total,
+      deaths: dailyData.deaths.total,
+      date: dailyData.reportDate,
+    }));
+
+    return modData;
+  } catch (error) {}
+};
+
 function App() {
   const [vals, setvals] = useState({});
-  const [dailyData, setdailyData] = useState({});
+
   useEffect(() => {
     fetchData();
-    fetchDailyData();
   }, []);
 
   async function fetchData() {
@@ -27,20 +40,12 @@ function App() {
     } catch (error) {}
   }
 
-  async function fetchDailyData() {
-    try {
-      const response = await fetch(`https://covid19.mathdro.id/api/daily`);
-      const [data] = await response.json();
-      setdailyData(data);
-    } catch (error) {}
-  }
-
   return (
     <div>
       <Header />
       <div className={styles.container}>
         <Cards data={vals} />
-        <Chart data={dailyData} />
+        <Chart />
         <CountryPicker />
       </div>
     </div>
