@@ -1,9 +1,9 @@
 .container {
-  margin: 50px 0;
+  display: flex;
+  flex-flow: row nowrap !important;
 }
-
 .card {
-  margin: 0 2% !important;
+  margin: 2% 2% !important;
 }
 
 .infected {

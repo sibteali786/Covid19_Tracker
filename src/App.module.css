@@ -4,8 +4,17 @@
 
 .container {
   display: flex;
-  flex-flow: row-reverse nowrap;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: center;
   margin-top: 60px;
+}
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    display: flex;
+    flex-flow: row-reverse nowrap;
+    align-items: center;
+    justify-content: center;
+  }
 }

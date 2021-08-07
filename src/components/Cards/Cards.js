@@ -4,15 +4,29 @@ import styles from "./Cards.module.css";
 import CountUp from "react-countup";
 // For making styles work in className property of each material ui tag
 import cx from "classnames";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: "auto",
+  },
+}));
+
 export const Cards = ({
   data: { confirmed, recovered, deaths, lastUpdate },
 }) => {
+  const classes = useStyles();
   if (!confirmed) {
     return "Loading.......";
   }
   return (
-    <div className={styles.container}>
-      <Grid container spacing={3} justifyContent="flex-start">
+    <div className={styles.container_v}>
+      <Grid
+        container
+        spacing={3}
+        justifyContent="flex-start"
+        className={cx(styles.container, styles.spacing)}
+      >
         <Grid
           item
           component={Card}
