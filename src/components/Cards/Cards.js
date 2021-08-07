@@ -12,7 +12,7 @@ export const Cards = ({
   }
   return (
     <div className={styles.container}>
-      <Grid container spacing={4} justifyContent="center">
+      <Grid container spacing={3} justifyContent="flex-start">
         <Grid
           item
           component={Card}

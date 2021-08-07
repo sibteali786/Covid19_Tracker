@@ -2,6 +2,13 @@ import { Cards, Chart, CountryPicker } from "./components";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: "auto",
+  },
+}));
 
 export const fetchCountries = async () => {
   try {
@@ -12,17 +19,22 @@ export const fetchCountries = async () => {
 };
 
 function App() {
+  const classes = useStyles();
   const [vals, setvals] = useState({});
   const [dailyData, setdailyData] = useState([]);
-
+  const [country, setCountry] = useState("");
   useEffect(() => {
     fetchData();
     fetchDailyData();
   }, []);
-
-  async function fetchData() {
+  const url = `https://covid19.mathdro.id/api`;
+  async function fetchData(country) {
+    let urlChng = url;
+    if (country) {
+      urlChng = `${url}/countries/${country}`;
+    }
     try {
-      const apiResponse = await fetch(`https://covid19.mathdro.id/api`);
+      const apiResponse = await fetch(urlChng);
 
       const { confirmed, recovered, deaths, lastUpdate } =
         await apiResponse.json();
@@ -33,6 +45,7 @@ function App() {
         lastUpdate,
       };
       setvals(modifiedData);
+      setCountry(country);
     } catch (error) {
       console.log(error);
     }
@@ -53,13 +66,20 @@ function App() {
     }
   }
 
+  const handleCountryChange = async (country) => {
+    console.log(await fetchData(country));
+  };
+
   return (
     <div>
       <Header />
+      <CountryPicker
+        className={styles.Picker}
+        handleCountryChange={handleCountryChange}
+      />
       <div className={styles.container}>
         <Cards data={vals} />
-        <Chart data={dailyData} />
-        <CountryPicker />
+        <Chart dailydata={dailyData} data={vals} country={country} />
       </div>
     </div>
   );
