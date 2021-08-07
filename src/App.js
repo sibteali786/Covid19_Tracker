@@ -3,9 +3,18 @@ import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 
+export const fetchCountries = async () => {
+  try {
+    const resp = await fetch(`https://covid19.mathdro.id/api/countries`);
+    const { countries } = await resp.json();
+    return countries.map((country) => country.name);
+  } catch (error) {}
+};
+
 function App() {
   const [vals, setvals] = useState({});
   const [dailyData, setdailyData] = useState([]);
+
   useEffect(() => {
     fetchData();
     fetchDailyData();
@@ -24,7 +33,9 @@ function App() {
         lastUpdate,
       };
       setvals(modifiedData);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async function fetchDailyData() {
@@ -37,7 +48,9 @@ function App() {
         date: daily.reportDate,
       }));
       setdailyData(modData);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
