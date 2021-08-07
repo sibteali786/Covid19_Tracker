@@ -3,23 +3,22 @@ import styles from "./Chart.module.css";
 import { Line, Bar } from "react-chartjs-2";
 
 export const Chart = ({ data }) => {
-  console.log(data);
   const LineChart = data.length ? (
     <Line
       data={{
-        labels: data.map(({ date }) => date),
+        labels: data.map((x) => x.date),
         datasets: [
           {
-            labels: data.map(({ confirmed }) => confirmed),
+            data: data.map((x) => x.confirmed),
             label: "Infected",
-            borderColor: "#3333ff",
+            borderColor: "rgba(241, 144, 16, 0.5)",
             fill: true,
           },
           {
-            labels: data.map(({ deaths }) => deaths),
+            data: data.map((x) => x.deaths),
             label: "Deaths",
-            borderColor: "red",
-            backgroundColor: "rgba(255,0,0,0.5) ",
+            borderColor: "rgba(240, 19, 74, 0.8)",
+            backgroundColor: "rgba(240, 19, 74, 0.5) ",
             fill: true,
           },
         ],
