@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import { makeStyles } from "@material-ui/core/styles";
-
+import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "auto",
@@ -78,8 +78,12 @@ function App() {
         handleCountryChange={handleCountryChange}
       />
       <div className={styles.container}>
-        <Cards data={vals} />
-        <Chart dailydata={dailyData} data={vals} country={country} />
+        <Grid item xs={4}>
+          <Cards data={vals} />
+        </Grid>
+        <Grid item xs={8}>
+          <Chart dailydata={dailyData} data={vals} country={country} />
+        </Grid>
       </div>
     </div>
   );

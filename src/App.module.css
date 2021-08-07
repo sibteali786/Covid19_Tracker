@@ -1,5 +1,5 @@
 .body {
-  background-color: aliceblue;
+  background-color: rgb(160, 165, 168);
 }
 
 .container {
@@ -12,9 +12,10 @@
 
 @media only screen and (min-width: 1000px) {
   .container {
+    max-width: 2000px;
     display: flex;
     flex-flow: row-reverse nowrap;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
   }
 }

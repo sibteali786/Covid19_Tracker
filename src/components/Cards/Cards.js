@@ -23,7 +23,6 @@ export const Cards = ({
     <div className={styles.container_v}>
       <Grid
         container
-        spacing={3}
         justifyContent="flex-start"
         className={cx(styles.container, styles.spacing)}
       >
