@@ -2,7 +2,7 @@
   "name": "covid-19-tracker-app-sibteali",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sibteali786.github.io/Covid19_Tracker_App_By_BootCamp/",
+  "homepage": "https://sibteali786.github.io/Covid19_Tracker_App_By_BootCamp",
   "dependencies": {
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
