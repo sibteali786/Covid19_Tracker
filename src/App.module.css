@@ -16,6 +16,6 @@
     display: flex;
     flex-flow: row-reverse nowrap;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
