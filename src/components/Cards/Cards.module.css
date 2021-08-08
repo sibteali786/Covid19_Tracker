@@ -1,9 +1,8 @@
 .container {
   display: flex;
-  flex-flow: column nowrap !important;
 }
 .card {
-  margin: 4% !important;
+  margin: 2% !important;
 }
 
 .infected {
@@ -14,4 +13,11 @@
 }
 .deaths {
   border-bottom: 10px solid rgba(240, 19, 74, 0.5);
+}
+
+@media only screen and (min-width: 1000px) {
+  .container {
+    width: 100%;
+    flex-flow: column nowrap !important;
+  }
 }

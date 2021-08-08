@@ -30,7 +30,7 @@ export const Cards = ({
           item
           component={Card}
           xs={12}
-          md={4}
+          md={12}
           className={cx(styles.card, styles.infected)}
         >
           <CardContent>
@@ -55,7 +55,7 @@ export const Cards = ({
           item
           component={Card}
           xs={12}
-          md={4}
+          md={12}
           className={cx(styles.card, styles.recovered)}
         >
           <CardContent>
@@ -80,7 +80,7 @@ export const Cards = ({
           item
           component={Card}
           xs={12}
-          md={4}
+          md={12}
           className={cx(styles.card, styles.deaths)}
         >
           <CardContent>

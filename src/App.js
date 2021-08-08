@@ -78,10 +78,10 @@ function App() {
         handleCountryChange={handleCountryChange}
       />
       <div className={styles.container}>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Cards data={vals} />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} md={8}>
           <Chart dailydata={dailyData} data={vals} country={country} />
         </Grid>
       </div>
