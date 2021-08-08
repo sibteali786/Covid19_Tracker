@@ -2,13 +2,7 @@ import { Cards, Chart, CountryPicker } from "./components";
 import Header from "./components/Header";
 import { useEffect, useState } from "react";
 import styles from "./App.module.css";
-import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: "auto",
-  },
-}));
 
 export const fetchCountries = async () => {
   try {
@@ -19,14 +13,13 @@ export const fetchCountries = async () => {
 };
 
 function App() {
-  const classes = useStyles();
   const [vals, setvals] = useState({});
   const [dailyData, setdailyData] = useState([]);
   const [country, setCountry] = useState("");
   useEffect(() => {
     fetchData();
     fetchDailyData();
-  }, []);
+  }, []); //eslint-disable-line react-hooks/exhaustive-deps
   const url = `https://covid19.mathdro.id/api`;
   async function fetchData(country) {
     let urlChng = url;

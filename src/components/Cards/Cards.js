@@ -4,18 +4,10 @@ import styles from "./Cards.module.css";
 import CountUp from "react-countup";
 // For making styles work in className property of each material ui tag
 import cx from "classnames";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: "auto",
-  },
-}));
 
 export const Cards = ({
   data: { confirmed, recovered, deaths, lastUpdate },
 }) => {
-  const classes = useStyles();
   if (!confirmed) {
     return "Loading.......";
   }
